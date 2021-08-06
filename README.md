@@ -1,3 +1,3 @@
 # docker-php-smallest
 
-The Smallest Docker PHP Image
+The Smallest Docker PHP Image `2.32MB`
