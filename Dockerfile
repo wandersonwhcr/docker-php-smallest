@@ -20,6 +20,10 @@ RUN apk add --no-cache \
     && ./buildconf --force
 
 RUN ./configure --disable-all \
+        --disable-cgi \
         --disable-debug --disable-phpdbg \
         CFLAGS="-O3 -march=native" \
     && sed -i 's/-export-dynamic/-all-static/g' Makefile
+
+RUN make \
+    && make install
