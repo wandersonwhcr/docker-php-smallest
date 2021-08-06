@@ -4,13 +4,19 @@ PHP_VERSION=8.0.9
 .PHONY: all
 all: build
 
+.PHONY: base
+base:
+	docker build . \
+		--file Base.Dockerfile \
+		--build-arg PHP_VERSION=${PHP_VERSION} \
+		--tag wandersonwhcr/php-smallest:${GIT_SHA_SHORT}-base
+
 .PHONY: build
-build:
+build: base
 	docker build . \
 		--file Dockerfile \
-		--build-arg PHP_VERSION=${PHP_VERSION} \
+		--build-arg DOCKER_IMAGE_TAG=wandersonwhcr/php-smallest:${GIT_SHA_SHORT}-base \
 		--tag wandersonwhcr/php-smallest:${GIT_SHA_SHORT}
-	docker tag wandersonwhcr/php-smallest:${GIT_SHA_SHORT} wandersonwhcr/php-smallest:latest
 
 .PHONY: size
 size: build
