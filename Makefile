@@ -10,6 +10,7 @@ build:
 		--file Dockerfile \
 		--build-arg PHP_VERSION=${PHP_VERSION} \
 		--tag wandersonwhcr/php-smallest:${GIT_SHA_SHORT}
+	docker tag wandersonwhcr/php-smallest:${GIT_SHA_SHORT} wandersonwhcr/php-smallest:latest
 
 .PHONY: size
 size: build
