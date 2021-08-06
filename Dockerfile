@@ -1,1 +1,3 @@
 FROM alpine:3.14
+
+ARG PHP_VERSION
