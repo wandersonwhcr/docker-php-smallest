@@ -22,6 +22,8 @@ RUN apk add --no-cache \
 RUN ./configure --disable-all \
         --disable-cgi \
         --disable-debug --disable-phpdbg \
+        --with-config-file-path="/usr/local/etc/php" \
+        --with-config-file-scan-dir="/usr/local/etc/php/conf.d" \
         CFLAGS="-O3 -march=native" \
     && sed -i 's/-export-dynamic/-all-static/g' Makefile
 
