@@ -10,3 +10,8 @@ build:
 		--file Dockerfile \
 		--build-arg PHP_VERSION=${PHP_VERSION} \
 		--tag wandersonwhcr/php-smallest:${GIT_SHA_SHORT}
+
+.PHONY: clean
+clean:
+	docker image list wandersonwhcr/php-smallest --quiet \
+		| xargs docker image remove
