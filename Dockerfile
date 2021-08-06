@@ -38,3 +38,5 @@ FROM scratch
 COPY --from=builder /usr/local/bin/php /usr/local/bin/php
 
 ENTRYPOINT ["/usr/local/bin/php"]
+
+WORKDIR /app
