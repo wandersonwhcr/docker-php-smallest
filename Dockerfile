@@ -18,3 +18,8 @@ RUN apk add --no-cache \
         bison \
         re2c \
     && ./buildconf --force
+
+RUN ./configure --disable-all \
+        --disable-debug --disable-phpdbg \
+        CFLAGS="-O3 -march=native" \
+    && sed -i 's/-export-dynamic/-all-static/g' Makefile
