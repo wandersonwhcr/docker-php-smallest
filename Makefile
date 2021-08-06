@@ -11,6 +11,14 @@ build:
 		--build-arg PHP_VERSION=${PHP_VERSION} \
 		--tag wandersonwhcr/php-smallest:${GIT_SHA_SHORT}
 
+.PHONY: size
+size: build
+	docker inspect \
+		--type image \
+		--format '{{ .Size }}' \
+		wandersonwhcr/php-smallest:${GIT_SHA_SHORT} \
+	| numfmt --to iec --format '%.2f'
+
 .PHONY: clean
 clean:
 	docker image list wandersonwhcr/php-smallest --quiet \
