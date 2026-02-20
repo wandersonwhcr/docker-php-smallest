@@ -1,21 +1,14 @@
 GIT_SHA_SHORT=$(shell git rev-parse --short HEAD)
-PHP_VERSION=8.0.9
+PHP_VERSION=8.5.3
 
 .PHONY: all
 all: build
 
-.PHONY: base
-base:
-	docker build . \
-		--file Base.Dockerfile \
-		--build-arg PHP_VERSION=${PHP_VERSION} \
-		--tag wandersonwhcr/php-smallest:${GIT_SHA_SHORT}-base
-
 .PHONY: build
-build: base
+build:
 	docker build . \
 		--file Dockerfile \
-		--build-arg DOCKER_IMAGE_TAG=wandersonwhcr/php-smallest:${GIT_SHA_SHORT}-base \
+		--build-arg PHP_VERSION=${PHP_VERSION} \
 		--tag wandersonwhcr/php-smallest:${GIT_SHA_SHORT}
 
 .PHONY: size
